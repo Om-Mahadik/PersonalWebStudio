@@ -30,7 +30,7 @@ export default function Service() {
             SERVICES
           </h2>
           {/* Optional: Add a small decorative line for visual balance */}
-          <div className="w-20 h-1 bg-white mx-auto mt-4" />
+          
         </motion.div>
 
         {/* Services List */}
