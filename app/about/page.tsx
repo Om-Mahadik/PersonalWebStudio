@@ -1,11 +1,22 @@
-import BlogSection from "@/components/sections/blogs/BlogSection";
-import Hero from "@/components/sections/hero";
+import AboutBrand from "@/components/sections/about/AboutBrand";
+import AboutPhilosophy from "@/components/sections/about/AboutPhilosophy";
+import AboutSocialProof from "@/components/sections/about/AboutSocialProof";
+import AboutStory from "@/components/sections/about/AboutStory";
+import AboutStrengths from "@/components/sections/about/AboutStrengths";
+
 
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <Hero />
-      <BlogSection />
+      
+
+      <AboutBrand />
+      <AboutSocialProof />
+      <AboutPhilosophy />
+      <AboutStrengths />
+      <AboutStory />
+
+
     </main>
   );
 }
