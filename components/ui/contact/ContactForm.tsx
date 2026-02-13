@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
 const budgets = [
@@ -11,7 +11,8 @@ const budgets = [
   "Budget not Defined yet",
 ];
 
-const containerVariants = {
+// Explicitly typed as Variants to remove the red underlines
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -19,7 +20,7 @@ const containerVariants = {
   }
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
 };
@@ -37,12 +38,34 @@ export default function ContactForm() {
       animate="show"
       className="w-full max-w-md flex flex-col gap-4"
     >
-      {/* Added 'name' and 'required' for better form handling */}
-      <motion.input variants={itemVariants} name="full_name" type="text" placeholder="Your Name" className={inputStyles} required />
-      <motion.input variants={itemVariants} name="email" type="email" placeholder="Email" className={inputStyles} required />
-      <motion.input variants={itemVariants} name="phone" type="tel" placeholder="Phone" className={inputStyles} />
+      <motion.input 
+        variants={itemVariants} 
+        name="full_name" 
+        type="text" 
+        placeholder="Your Name" 
+        className={inputStyles} 
+        required 
+      />
+      <motion.input 
+        variants={itemVariants} 
+        name="email" 
+        type="email" 
+        placeholder="Email" 
+        className={inputStyles} 
+        required 
+      />
+      <motion.input 
+        variants={itemVariants} 
+        name="phone" 
+        type="tel" 
+        placeholder="Phone" 
+        className={inputStyles} 
+      />
       
       <motion.div variants={itemVariants} className="relative">
+        {/* Hidden input to ensure the selected budget is sent with the form data */}
+        <input type="hidden" name="budget" value={selectedBudget} />
+        
         <button
           type="button"
           aria-haspopup="listbox"
