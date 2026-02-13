@@ -1,7 +1,7 @@
 "use client";
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import BrandingService from "@/components/ui/services/BrandingService";
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 
 const ServicesSection = () => {
   const targetRef = useRef<HTMLDivElement | null>(null);
