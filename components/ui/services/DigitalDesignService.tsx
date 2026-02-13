@@ -1,14 +1,14 @@
 "use client";
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, TargetAndTransition } from 'framer-motion';
 
 const DigitalDesignService = () => {
   const platforms = ["UX Audit", "Wireframes", "User flows", "Prototyping"];
   const websites = ["Interactive Experiences", "Design System", "Wireframes", "Art Direction", "Responsive", "UI Kit"];
   const mobileApps = ["Research", "UX Design", "Prototyping", "Design System", "Visual Design"];
 
-  // Animation for the floating effect
-  const float = (delay: number) => ({
+  // Explicitly typed as TargetAndTransition to satisfy the animate prop
+  const float = (delay: number): TargetAndTransition => ({
     y: [0, -12, 0],
     transition: {
       duration: 4,
