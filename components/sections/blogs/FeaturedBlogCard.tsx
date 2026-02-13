@@ -1,19 +1,34 @@
 "use client";
-import { motion } from 'framer-motion';
-import { ArrowUpRight, Clock, Eye, Calendar } from 'lucide-react';
 
-const FeaturedBlogCard = ({ post }) => {
+import { motion } from "framer-motion";
+import { ArrowUpRight, Calendar, Clock, Eye } from "lucide-react";
+
+interface BlogPost {
+  id: number;
+  title: string;
+  readTime?: string;
+  views: number; // must match BlogPageSection
+  date: string;
+  image: string;
+  featured: boolean;
+}
+
+interface FeaturedBlogCardProps {
+  post: BlogPost;
+}
+
+const FeaturedBlogCard = ({ post }: FeaturedBlogCardProps) => {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       className="group w-full cursor-pointer"
     >
       <div className="relative aspect-[16/10] md:aspect-[21/9] w-full overflow-hidden rounded-[2rem] bg-[#1a1a1a]">
-        <img 
-          src={post.image} 
-          alt={post.title} 
+        <img
+          src={post.image}
+          alt={post.title}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
       </div>
@@ -23,16 +38,23 @@ const FeaturedBlogCard = ({ post }) => {
           <h2 className="text-xl md:text-3xl font-bold text-white leading-tight max-w-2xl">
             {post.title}
           </h2>
-          
+
           <div className="mt-3 flex flex-wrap gap-4 text-white/40 font-medium text-[10px] md:text-xs uppercase tracking-wider">
+            {post.readTime && (
+              <div className="flex items-center gap-1.5">
+                <Clock size={14} />
+                <span>{post.readTime}</span>
+              </div>
+            )}
+
             <div className="flex items-center gap-1.5">
-              <Clock size={14} /> <span>{post.readTime}</span>
+              <Eye size={14} />
+              <span>{post.views.toLocaleString()}+</span>
             </div>
+
             <div className="flex items-center gap-1.5">
-              <Eye size={14} /> <span>{post.views}</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <Calendar size={14} /> <span>{post.date}</span>
+              <Calendar size={14} />
+              <span>{post.date}</span>
             </div>
           </div>
         </div>
