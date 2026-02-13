@@ -6,43 +6,43 @@ import { useState } from "react";
 const faqs = [
   {
     question: "How long does it takes to get started?",
-    answer: "Our turnaround is lightning-fast. Just one week from signing off and we're there with the kick-off meeting to get it rolling."
+    answer: "Our turnaround is lightning-fast. Just one week from signing off and we&apos;re there with the kick-off meeting to get it rolling."
   },
   {
     question: "How long does it takes to get started?",
-    answer: "Our turnaround is lightning-fast. Just one week from signing off and we're there with the kick-off meeting to get it rolling."
+    answer: "Our turnaround is lightning-fast. Just one week from signing off and we&apos;re there with the kick-off meeting to get it rolling."
   },
   {
     question: "How long does it takes to get started?",
-    answer: "Our turnaround is lightning-fast. Just one week from signing off and we're there with the kick-off meeting to get it rolling."
+    answer: "Our turnaround is lightning-fast. Just one week from signing off and we&apos;re there with the kick-off meeting to get it rolling."
   },
   {
     question: "How long does it takes to get started?",
-    answer: "Our turnaround is lightning-fast. Just one week from signing off and we're there with the kick-off meeting to get it rolling."
+    answer: "Our turnaround is lightning-fast. Just one week from signing off and we&apos;re there with the kick-off meeting to get it rolling."
   },
   {
     question: "How long does it takes to get started?",
-    answer: "Our turnaround is lightning-fast. Just one week from signing off and we're there with the kick-off meeting to get it rolling."
+    answer: "Our turnaround is lightning-fast. Just one week from signing off and we&apos;re there with the kick-off meeting to get it rolling."
   },
   {
     question: "How long does it takes to get started?",
-    answer: "Our turnaround is lightning-fast. Just one week from signing off and we're there with the kick-off meeting to get it rolling."
+    answer: "Our turnaround is lightning-fast. Just one week from signing off and we&apos;re there with the kick-off meeting to get it rolling."
   },
   {
     question: "How long does it takes to get started?",
-    answer: "Our turnaround is lightning-fast. Just one week from signing off and we're there with the kick-off meeting to get it rolling."
+    answer: "Our turnaround is lightning-fast. Just one week from signing off and we&apos;re there with the kick-off meeting to get it rolling."
   },
   {
     question: "How long does it takes to get started?",
-    answer: "Our turnaround is lightning-fast. Just one week from signing off and we're there with the kick-off meeting to get it rolling."
+    answer: "Our turnaround is lightning-fast. Just one week from signing off and we&apos;re there with the kick-off meeting to get it rolling."
   },
   {
     question: "How long does it takes to get started?",
-    answer: "Our turnaround is lightning-fast. Just one week from signing off and we're there with the kick-off meeting to get it rolling."
+    answer: "Our turnaround is lightning-fast. Just one week from signing off and we&apos;re there with the kick-off meeting to get it rolling."
   },
   {
     question: "How long does it takes to get started?",
-    answer: "Our turnaround is lightning-fast. Just one week from signing off and we're there with the kick-off meeting to get it rolling."
+    answer: "Our turnaround is lightning-fast. Just one week from signing off and we&apos;re there with the kick-off meeting to get it rolling."
   },
 ];
 
@@ -52,8 +52,8 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1, // Time between each item appearing
-      delayChildren: 0.3,   // Initial delay before the first item starts
+      staggerChildren: 0.1,
+      delayChildren: 0.3,
     },
   },
 };
@@ -63,7 +63,11 @@ const itemVariants = {
   visible: { 
     opacity: 1, 
     y: 0, 
-    transition: { duration: 0.8, ease: [0.21, 0.45, 0.32, 0.9] } 
+    transition: { 
+      duration: 0.8, 
+      // "as const" fixes the TypeScript Type error found in build logs
+      ease: [0.21, 0.45, 0.32, 0.9] as const 
+    } 
   },
 };
 
@@ -109,12 +113,12 @@ export default function FaqsSectionHome() {
                     <motion.div 
                       className="absolute h-[1.5px] w-4 bg-white" 
                       animate={{ rotate: isOpen ? 45 : 0 }}
-                      transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                      transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] as const }}
                     />
                     <motion.div 
                       className="absolute h-4 w-[1.5px] bg-white" 
                       animate={{ rotate: isOpen ? 45 : 0 }}
-                      transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                      transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] as const }}
                     />
                   </div>
                 </button>
@@ -125,7 +129,7 @@ export default function FaqsSectionHome() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }}
+                      transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] as const }}
                       className="overflow-hidden"
                     >
                       <p className="pb-8 pr-10 text-[16px] leading-relaxed text-zinc-500">
