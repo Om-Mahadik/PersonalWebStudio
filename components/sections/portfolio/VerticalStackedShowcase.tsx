@@ -1,96 +1,122 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const VerticalStackedShowcase = () => {
+  const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef(null);
+
   const images = [
-    "/portfolio/port1.jpg",
-    "/portfolio/port2.jpg",
-    "/portfolio/port3.jpg",
-    "/portfolio/port2.jpg",
-    "/portfolio/port1.jpg",
+    "/portfolio/port1.jpg", 
+    "/portfolio/port2.jpg", 
+    "/portfolio/port3.jpg", 
+    "/portfolio/port2.jpg", 
+    "/portfolio/port1.jpg"
   ];
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Trigger when the component is 40% visible in the viewport
+        if (entry.isIntersecting) {
+          setIsInView(true);
+        }
+      },
+      { threshold: 0.4 } 
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="relative w-full flex items-center justify-center overflow-visible">
-      
-      <style dangerouslySetInnerHTML={{ __html: `
-        /* 1. INITIAL ENTRANCE FAN */
-        @keyframes entrance {
-          0% { 
-            opacity: 0; 
-            transform: translateY(30px) rotate(var(--r)) scale(0.9); 
+    <div ref={sectionRef} className="relative w-full flex items-center justify-center min-h-[450px] md:min-h-[600px]">
+      {/* We only inject the animation styles if isInView is true.
+          This prevents the animation from running 'in the dark'.
+      */}
+      {isInView && (
+        <style dangerouslySetInnerHTML={{ __html: `
+          @keyframes orbitEntrance {
+            0% { 
+              opacity: 0; 
+              transform: translateY(100px) rotate(0deg) scale(0.5); 
+            }
+            30% { 
+              opacity: 1; 
+              transform: translateY(0) rotate(0deg) scale(1); 
+            }
+            60% { 
+              transform: rotate(var(--angle)) translateY(var(--radius)) rotate(calc(var(--angle) * -1));
+            }
+            100% { 
+              transform: rotate(var(--angle)) translateY(var(--radius)) rotate(calc(var(--angle) * -1));
+            }
           }
-          100% { 
-            opacity: 1; 
-            transform: translateY(0) rotate(var(--r)) scale(1); 
+
+          @keyframes mainRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
           }
-        }
 
-        /* 2. SLOWER ELEGANT LOOP */
-        @keyframes verticalLift {
-          0%, 30%, 100% { 
-            transform: translateY(0) rotate(var(--r)) scale(1);
+          @keyframes counterRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
           }
-          10%, 20% { 
-            transform: translateY(-30px) rotate(calc(var(--r) * 0.5)) scale(1.1); 
-            z-index: 100;
+
+          .orbit-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: mainRotate 25s linear infinite 3.5s;
           }
-        }
 
-        .stack-container {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-          /* Reduced height to keep the vertical cards compact */
-          min-height: 400px; 
-        }
+          .stack-card {
+            position: absolute;
+            will-change: transform;
+            animation: orbitEntrance 2.5s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+          }
 
-        .stack-card {
-          position: relative;
-          margin-left: -60px; /* Tighter overlap for mobile */
-          opacity: 0;
-          will-change: transform;
-          z-index: var(--z);
-          transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+          .card-inner {
+            animation: counterRotate 25s linear infinite 3.5s;
+          }
 
-        @media (min-width: 768px) {
-          .stack-card { margin-left: -130px; }
-        }
+          /* Configuration for 5 images in a circle */
+          .stack-card:nth-child(1) { --angle: 0deg;   --radius: -150px; animation-delay: 0.1s; }
+          .stack-card:nth-child(2) { --angle: 72deg;  --radius: -150px; animation-delay: 0.2s; }
+          .stack-card:nth-child(3) { --angle: 144deg; --radius: -150px; animation-delay: 0.3s; }
+          .stack-card:nth-child(4) { --angle: 216deg; --radius: -150px; animation-delay: 0.4s; }
+          .stack-card:nth-child(5) { --angle: 288deg; --radius: -150px; animation-delay: 0.5s; }
 
-        /* Vertical Stack Timing */
-        .stack-card:nth-child(1) { --r: -15deg; --z: 10; animation: entrance 0.8s forwards 0.1s, verticalLift 15s infinite 2s; }
-        .stack-card:nth-child(2) { --r: -8deg;  --z: 20; animation: entrance 0.8s forwards 0.2s, verticalLift 15s infinite 5s; }
-        .stack-card:nth-child(3) { --r: 0deg;   --z: 30; animation: entrance 0.8s forwards 0.3s, verticalLift 15s infinite 8s; }
-        .stack-card:nth-child(4) { --r: 8deg;   --z: 40; animation: entrance 0.8s forwards 0.4s, verticalLift 15s infinite 11s; }
-        .stack-card:nth-child(5) { --r: 15deg;  --z: 50; animation: entrance 0.8s forwards 0.5s, verticalLift 15s infinite 14s; }
+          @media (max-width: 768px) {
+            .stack-card:nth-child(n) { --radius: -110px; }
+          }
+        `}} />
+      )}
 
-        /* Interaction - Manual Fan out */
-        .stack-container:hover .stack-card {
-          margin-left: 10px;
-          transform: rotate(0deg);
-          animation-play-state: paused;
-        }
-      `}} />
-
-      <div className="stack-container">
+      <div className={`orbit-container ${!isInView ? 'opacity-0' : 'opacity-100 transition-opacity duration-700'}`}>
         {images.map((src, i) => (
           <div key={i} className="stack-card">
-            {/* Aspect 2/3 for Vertical Focus */}
-            <div className="w-28 h-44 md:w-52 md:h-80 bg-zinc-900 rounded-2xl overflow-hidden border border-white/10 shadow-[15px_0_30px_rgba(0,0,0,0.8)] relative group">
+            <div className="card-inner w-28 h-40 md:w-44 md:h-64 bg-zinc-900 rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.8)]">
               <img 
                 src={src} 
-                alt="Studio Work" 
-                className="w-full h-full object-cover"
+                alt="Studio Portfolio" 
+                className="w-full h-full object-cover block" 
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-white/5 via-transparent to-white/10 pointer-events-none" />
             </div>
           </div>
         ))}
+        
+        {/* Central Core */}
+        <div className="absolute w-12 h-12 rounded-full bg-[#FFFFFF]/10 border border-[#FFFFFF]/20 flex items-center justify-center backdrop-blur-sm z-0">
+           <div className="w-2 h-2 rounded-full bg-[#FFFFFF] animate-ping" />
+        </div>
       </div>
-
     </div>
   );
 };
