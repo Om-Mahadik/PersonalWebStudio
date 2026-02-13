@@ -8,7 +8,7 @@ interface BlogPost {
   id: number;
   title: string;
   readTime?: string;
-  views: string;
+  views: number; // ✅ changed to number
   date: string;
   image: string;
   featured: boolean;
@@ -20,7 +20,7 @@ const BlogPageSection = () => {
       id: 1,
       title: "We deliver exactly what you need to grow your business 10x",
       readTime: "5 mins",
-      views: "5k+",
+      views: 5000, // ✅ number
       date: "3 days ago",
       image: "/blogs/blog3.jpg",
       featured: true,
@@ -28,7 +28,7 @@ const BlogPageSection = () => {
     {
       id: 2,
       title: "We deliver exactly what you need to grow your business 10x",
-      views: "5k+",
+      views: 5000,
       date: "3 days ago",
       image: "/blogs/blog1.jpg",
       featured: false,
@@ -36,7 +36,7 @@ const BlogPageSection = () => {
     {
       id: 3,
       title: "Operators must understanding before operating your service",
-      views: "5k+",
+      views: 5000,
       date: "3 days ago",
       image: "/blogs/blog2.jpg",
       featured: false,
@@ -44,7 +44,7 @@ const BlogPageSection = () => {
     {
       id: 4,
       title: "Meet Designer Mr. Ser Den Mark from Austin",
-      views: "5k+",
+      views: 5000,
       date: "3 days ago",
       image: "/blogs/blog4.jpg",
       featured: false,
@@ -52,7 +52,7 @@ const BlogPageSection = () => {
     {
       id: 5,
       title: "We deliver exactly what you need to grow your business 10x",
-      views: "5k+",
+      views: 5000,
       date: "3 days ago",
       image: "/blogs/blog5.jpg",
       featured: false,
@@ -62,7 +62,6 @@ const BlogPageSection = () => {
   const featuredPost = posts.find((post) => post.featured);
   const regularPosts = posts.filter((post) => !post.featured);
 
-  // Animation Variants
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -83,7 +82,7 @@ const BlogPageSection = () => {
       y: 0,
       transition: {
         duration: 1.2,
-        ease: [0.25, 0.1, 0.25, 1.0] as const, // ✅ FIXED
+        ease: [0.25, 0.1, 0.25, 1.0] as const,
       },
     },
   };
@@ -92,7 +91,6 @@ const BlogPageSection = () => {
     <section className="bg-black py-16 px-4 md:px-12">
       <div className="max-w-[1400px] mx-auto">
         
-        {/* Featured Card */}
         {featuredPost && (
           <motion.div
             initial="hidden"
@@ -105,7 +103,6 @@ const BlogPageSection = () => {
           </motion.div>
         )}
 
-        {/* Regular Blogs */}
         <motion.div
           initial="hidden"
           whileInView="visible"
