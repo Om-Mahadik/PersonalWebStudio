@@ -8,6 +8,7 @@ import ReviewsSection from "@/components/sections/reviews/ReviewsSection";
 
 import HomePortfolioSlider from "@/components/sections/portfolio/HomePortfolioSlider";
 import HeroText from "@/components/sections/home/HeroText";
+import HomeServicesSection from "@/components/sections/services/HomeServicesSection";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <ScrollRevealSection />
       <Features />
       <HomePortfolioSlider />
+      <HomeServicesSection />
   
       
 
