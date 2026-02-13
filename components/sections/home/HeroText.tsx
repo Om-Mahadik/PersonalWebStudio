@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { ArrowRight, Sparkles, Star } from 'lucide-react';
 import Link from 'next/link';
 
@@ -17,8 +17,8 @@ const HeroText = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Optimized Animation Variants
-  const containerVars = {
+  // Defined types explicitly to satisfy TypeScript and Vercel builds
+  const containerVars: Variants = {
     initial: { opacity: 0 },
     animate: { 
       opacity: 1, 
@@ -29,7 +29,7 @@ const HeroText = () => {
     }
   };
 
-  const itemVars = {
+  const itemVars: Variants = {
     initial: { opacity: 0, y: 30 },
     animate: { 
       opacity: 1, 
@@ -41,7 +41,7 @@ const HeroText = () => {
   return (
     <section className="relative w-full bg-black pt-32 pb-24 md:pt-32 md:pb-10 px-6 overflow-hidden flex flex-col items-center justify-center">
       
-      {/* Background Decor (Static opacity for performance) */}
+      {/* Background Decor */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
         <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] bg-zinc-800/20 rounded-full blur-[100px]" />
@@ -62,7 +62,11 @@ const HeroText = () => {
           <div className="flex -space-x-2.5">
             {[1, 2, 3, 4].map((i) => (
               <div key={i} className="w-6 h-6 rounded-full border-2 border-black bg-zinc-800 overflow-hidden">
-                <img src={`https://i.pravatar.cc/100?img=${i + 15}`} alt="founder" className="w-full h-full object-cover grayscale" />
+                <img 
+                  src={`https://i.pravatar.cc/100?img=${i + 15}`} 
+                  alt={`founder-${i}`} 
+                  className="w-full h-full object-cover grayscale" 
+                />
               </div>
             ))}
           </div>
@@ -125,7 +129,7 @@ const HeroText = () => {
           className="mt-6 flex flex-col items-center gap-2"
         >
           <div className="flex items-center gap-1">
-            {[...Array(5)].map((_, i) => (
+            {Array.from({ length: 5 }).map((_, i) => (
               <Star key={i} size={16} fill="#FBBF24" stroke="#FBBF24" strokeWidth={0} />
             ))}
           </div>
@@ -144,13 +148,13 @@ const HeroText = () => {
           </p>
 
           <Link href="/contact">
-  <button className="group relative flex items-center gap-5 bg-zinc-900/50 border border-white/10 text-white pl-8 pr-2 py-2 rounded-full font-black text-[10px] uppercase tracking-[0.2em] transition-all hover:bg-zinc-800 hover:border-blue-500/50 active:scale-95 shadow-xl">
-    Start Journey
-    <div className="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center transition-all duration-500 group-hover:bg-blue-600 group-hover:text-white">
-      <ArrowRight size={16} strokeWidth={3} className="group-hover:translate-x-0.5 transition-transform" />
-    </div>
-  </button>
-</Link>
+            <button className="group relative flex items-center gap-5 bg-zinc-900/50 border border-white/10 text-white pl-8 pr-2 py-2 rounded-full font-black text-[10px] uppercase tracking-[0.2em] transition-all hover:bg-zinc-800 hover:border-blue-500/50 active:scale-95 shadow-xl">
+              Start Journey
+              <div className="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center transition-all duration-500 group-hover:bg-blue-600 group-hover:text-white">
+                <ArrowRight size={16} strokeWidth={3} className="group-hover:translate-x-0.5 transition-transform" />
+              </div>
+            </button>
+          </Link>
         </motion.div>
 
       </motion.div>

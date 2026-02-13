@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Transition } from 'framer-motion';
 
 const DesktopNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,12 +33,12 @@ const DesktopNavbar = () => {
     { name: 'About Us', href: '/about' },
   ];
 
-  // Ultra-smooth spring config
-  const smoothSpring = {
+  // Explicitly typing the spring configuration
+  const smoothSpring: Transition = {
     type: "spring",
-    stiffness: 40,   // Very low stiffness for slow movement
-    damping: 14,     // Controlled oscillation
-    mass: 1.8,       // Heavier mass for cinematic inertia
+    stiffness: 40,
+    damping: 14,
+    mass: 1.8,
   };
 
   return (
@@ -68,7 +68,7 @@ const DesktopNavbar = () => {
           </Link>
         </motion.div>
 
-        {/* CENTER NAV LINKS - Animated Stagger */}
+        {/* CENTER NAV LINKS */}
         <div className="flex items-center justify-center flex-1 overflow-hidden">
           <AnimatePresence mode="wait">
             {!isScrolled && (

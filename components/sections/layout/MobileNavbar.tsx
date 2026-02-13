@@ -3,22 +3,37 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 
 const MobileNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [time, setTime] = useState("");
 
   useEffect(() => {
-    // Live digital clock logic
-    const timer = setInterval(() => {
+    // Set time only on client mount to avoid hydration mismatch
+    const updateClock = () => {
       const now = new Date();
-      setTime(now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' }));
-    }, 1000);
+      setTime(now.toLocaleTimeString('en-US', { 
+        hour12: false, 
+        hour: '2-digit', 
+        minute: '2-digit' 
+      }));
+    };
+
+    updateClock(); // Initial call
+    const timer = setInterval(updateClock, 1000);
 
     // Prevent background scrolling
-    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
-    return () => clearInterval(timer);
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      clearInterval(timer);
+      document.body.style.overflow = 'auto'; // Cleanup on unmount
+    };
   }, [isOpen]);
 
   const navLinks = [
@@ -30,7 +45,8 @@ const MobileNavbar = () => {
     { name: 'About Us', href: '/about' },
   ];
 
-  const menuVariants = {
+  // Typed as Variants to remove VS Code underlines
+  const menuVariants: Variants = {
     initial: { clipPath: 'circle(0% at 92% 5%)' },
     animate: { 
       clipPath: 'circle(150% at 92% 5%)', 
@@ -42,7 +58,7 @@ const MobileNavbar = () => {
     }
   };
 
-  const linkVariants = {
+  const linkVariants: Variants = {
     initial: { opacity: 0, y: 20 },
     animate: (i: number) => ({
       opacity: 1,
@@ -61,7 +77,7 @@ const MobileNavbar = () => {
             src="/imgs/pws-logo.png" 
             alt="PWS Logo" 
             fill 
-            className="object-contain" // Ensures logo is white on dark/mixed backgrounds
+            className="object-contain" 
             priority 
           />
         </Link>
@@ -85,10 +101,10 @@ const MobileNavbar = () => {
             exit="exit"
             className="fixed inset-0 bg-[#080808] z-[90] flex flex-col justify-between px-10 py-20"
           >
-            {/* Top Row: Navigation Label & Live Clock */}
+            {/* Top Row */}
             <div className="flex justify-between items-center border-b border-white/10 pb-4">
               <span className="text-white/20 text-[10px] uppercase tracking-[0.4em] font-bold">Navigation</span>
-              <span className="text-white/40 font-mono text-xs">{time} IST</span>
+              <span className="text-white/40 font-mono text-xs">{time ? `${time} IST` : '--:-- IST'}</span>
             </div>
 
             {/* Links Section */}
@@ -123,7 +139,6 @@ const MobileNavbar = () => {
                 </Link>
               </motion.div>
 
-              {/* Socials & Studio Mark */}
               <div className="flex justify-between items-end pt-6">
                 <div className="flex gap-6">
                   {['Instagram', 'LinkedIn', 'Behance'].map((social) => (
@@ -131,7 +146,7 @@ const MobileNavbar = () => {
                       key={social} 
                       className="text-white/30 text-[10px] font-bold hover:text-white transition-colors cursor-pointer tracking-widest uppercase"
                     >
-                      {social.slice(0, 2)} {/* This keeps it as IG, LI, BE */}
+                      {social.slice(0, 2)}
                     </span>
                   ))}
                 </div>
