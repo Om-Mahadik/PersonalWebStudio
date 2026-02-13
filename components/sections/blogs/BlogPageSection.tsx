@@ -1,11 +1,21 @@
 "use client";
 
-import { motion } from 'framer-motion';
-import FeaturedBlogCard from './FeaturedBlogCard';
-import BlogPageBlogsCard from './BlogPageBlogsCard';
+import { motion, Variants } from "framer-motion";
+import BlogPageBlogsCard from "./BlogPageBlogsCard";
+import FeaturedBlogCard from "./FeaturedBlogCard";
+
+interface BlogPost {
+  id: number;
+  title: string;
+  readTime?: string;
+  views: string;
+  date: string;
+  image: string;
+  featured: boolean;
+}
 
 const BlogPageSection = () => {
-  const posts = [
+  const posts: BlogPost[] = [
     {
       id: 1,
       title: "We deliver exactly what you need to grow your business 10x",
@@ -13,7 +23,7 @@ const BlogPageSection = () => {
       views: "5k+",
       date: "3 days ago",
       image: "/blogs/blog3.jpg",
-      featured: true 
+      featured: true,
     },
     {
       id: 2,
@@ -21,7 +31,7 @@ const BlogPageSection = () => {
       views: "5k+",
       date: "3 days ago",
       image: "/blogs/blog1.jpg",
-      featured: false
+      featured: false,
     },
     {
       id: 3,
@@ -29,7 +39,7 @@ const BlogPageSection = () => {
       views: "5k+",
       date: "3 days ago",
       image: "/blogs/blog2.jpg",
-      featured: false
+      featured: false,
     },
     {
       id: 4,
@@ -37,7 +47,7 @@ const BlogPageSection = () => {
       views: "5k+",
       date: "3 days ago",
       image: "/blogs/blog4.jpg",
-      featured: false
+      featured: false,
     },
     {
       id: 5,
@@ -45,36 +55,36 @@ const BlogPageSection = () => {
       views: "5k+",
       date: "3 days ago",
       image: "/blogs/blog5.jpg",
-      featured: false
-    }
+      featured: false,
+    },
   ];
 
-  const featuredPost = posts.find(post => post.featured);
-  const regularPosts = posts.filter(post => !post.featured);
+  const featuredPost = posts.find((post) => post.featured);
+  const regularPosts = posts.filter((post) => !post.featured);
 
-  // Slow, elegant animation variants
-  const containerVariants = {
+  // Animation Variants
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2, // Increased delay for "one by one" feel
+        staggerChildren: 0.2,
       },
     },
   };
 
-  const itemVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 40 // Start lower for a more dramatic reveal
+  const itemVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 40,
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { 
-        duration: 1.2, // Slower duration for a premium feel
-        ease: [0.25, 0.1, 0.25, 1.0] // Soft, elegant ease-out
-      }
+      transition: {
+        duration: 1.2,
+        ease: [0.25, 0.1, 0.25, 1.0] as const, // ✅ FIXED
+      },
     },
   };
 
@@ -82,21 +92,21 @@ const BlogPageSection = () => {
     <section className="bg-black py-16 px-4 md:px-12">
       <div className="max-w-[1400px] mx-auto">
         
-        {/* Featured Card Reveal */}
+        {/* Featured Card */}
         {featuredPost && (
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }} // Starts reveal when 20% of card is seen
-            variants={itemVariants} 
+            viewport={{ once: true, amount: 0.2 }}
+            variants={itemVariants}
             className="mb-16"
           >
             <FeaturedBlogCard post={featuredPost} />
           </motion.div>
         )}
 
-        {/* Regular Blogs Reveal */}
-        <motion.div 
+        {/* Regular Blogs */}
+        <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
@@ -104,15 +114,11 @@ const BlogPageSection = () => {
           className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-12"
         >
           {regularPosts.map((post) => (
-            <motion.div 
-              key={post.id} 
-              variants={itemVariants}
-            >
+            <motion.div key={post.id} variants={itemVariants}>
               <BlogPageBlogsCard post={post} />
             </motion.div>
           ))}
         </motion.div>
-
       </div>
     </section>
   );
