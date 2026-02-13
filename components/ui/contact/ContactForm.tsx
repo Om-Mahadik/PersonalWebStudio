@@ -1,7 +1,8 @@
 "use client";
-import { useState } from "react";
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import { sendContactForm } from "@/services/contactService";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { useState } from "react";
 
 const budgets = [
   "₹10,000 - ₹50,000",
@@ -11,7 +12,6 @@ const budgets = [
   "Budget not Defined yet",
 ];
 
-// Explicitly typed as Variants to remove the red underlines
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -28,48 +28,82 @@ const itemVariants: Variants = {
 export default function ContactForm() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedBudget, setSelectedBudget] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const inputStyles = "w-full bg-transparent border border-zinc-800 rounded-2xl p-4 text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-500 transition-all duration-300";
+  const inputStyles =
+    "w-full bg-transparent border border-zinc-800 rounded-2xl p-4 text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-500 transition-all duration-300";
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+
+    const data = {
+      name: formData.get("full_name") as string,
+      email: formData.get("email") as string,
+      phone: formData.get("phone") as string,
+      budget: selectedBudget,
+      message: formData.get("message") as string,
+    };
+
+    if (!data.budget) {
+      alert("Please select a budget");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      await sendContactForm(data);
+
+      alert("Message sent successfully 🚀");
+
+      e.currentTarget.reset();
+      setSelectedBudget("");
+    } catch (error: any) {
+      alert(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <motion.form 
+    <motion.form
+      onSubmit={handleSubmit}
       variants={containerVariants}
       initial="hidden"
       animate="show"
       className="w-full max-w-md flex flex-col gap-4"
     >
-      <motion.input 
-        variants={itemVariants} 
-        name="full_name" 
-        type="text" 
-        placeholder="Your Name" 
-        className={inputStyles} 
-        required 
+      <motion.input
+        variants={itemVariants}
+        name="full_name"
+        type="text"
+        placeholder="Your Name"
+        className={inputStyles}
+        required
       />
-      <motion.input 
-        variants={itemVariants} 
-        name="email" 
-        type="email" 
-        placeholder="Email" 
-        className={inputStyles} 
-        required 
+
+      <motion.input
+        variants={itemVariants}
+        name="email"
+        type="email"
+        placeholder="Email"
+        className={inputStyles}
+        required
       />
-      <motion.input 
-        variants={itemVariants} 
-        name="phone" 
-        type="tel" 
-        placeholder="Phone" 
-        className={inputStyles} 
+
+      <motion.input
+        variants={itemVariants}
+        name="phone"
+        type="tel"
+        placeholder="Phone"
+        className={inputStyles}
+        required
       />
-      
+
       <motion.div variants={itemVariants} className="relative">
-        {/* Hidden input to ensure the selected budget is sent with the form data */}
-        <input type="hidden" name="budget" value={selectedBudget} />
-        
         <button
           type="button"
-          aria-haspopup="listbox"
-          aria-expanded={isOpen}
           onClick={() => setIsOpen(!isOpen)}
           className={`${inputStyles} flex justify-between items-center text-left ${
             !selectedBudget ? "text-zinc-500" : "text-white"
@@ -107,22 +141,24 @@ export default function ContactForm() {
         </AnimatePresence>
       </motion.div>
 
-      <motion.textarea 
+      <motion.textarea
         variants={itemVariants}
         name="message"
-        placeholder="Message" 
-        rows={5} 
+        placeholder="Message"
+        rows={5}
         className={`${inputStyles} resize-none`}
+        required
       />
 
-      <motion.button 
+      <motion.button
         variants={itemVariants}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        type="submit" 
-        className="w-full bg-[#B4B4B4] hover:bg-white text-black font-semibold py-4 rounded-2xl transition-all duration-300 mt-2"
+        type="submit"
+        disabled={loading}
+        className="w-full bg-[#B4B4B4] hover:bg-white text-black font-semibold py-4 rounded-2xl transition-all duration-300 mt-2 disabled:opacity-50"
       >
-        Submit
+        {loading ? "Sending..." : "Submit"}
       </motion.button>
     </motion.form>
   );
