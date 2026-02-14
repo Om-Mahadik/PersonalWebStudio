@@ -26,7 +26,7 @@ export default function Service() {
           viewport={{ once: true }}
           className="mb-24 text-center" 
         >
-          <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tight">
+          <h2 className="text-6xl md:text-7xl font-black uppercase tracking-tight">
             SERVICES
           </h2>
           {/* Optional: Add a small decorative line for visual balance */}
