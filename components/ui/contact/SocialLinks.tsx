@@ -6,7 +6,7 @@ const socials = [
   {
     name: "Instagram",
     icon: <Instagram size={22} />,
-    href: process.env.NEXT_PUBLIC_INSTAGRAM,
+    href: "https://instagram.com/personalwebstudio" ,
   },
   {
     name: "Facebook",
