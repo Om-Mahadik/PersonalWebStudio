@@ -8,58 +8,58 @@ const ALL_DATA = [
   {
     id: 1,
     src: "/portfolio/port1.jpg",
-    title: "Digital Marketing Ads Creative",
-    description: "Ads Creative for PersonalWebStudio regarding Digital marketing",
-    views: 531
+    title: "DotCircle - Clothing Brand Identity Branding",
+    description: "Created a unique and memorable brand identity for DotCircle, a clothing brand, through logo design, typography, and visual elements that reflect the brand's personality and values.",
+    views: "10k"
   },
   {
     id: 2,
     src: "https://cdn.dribbble.com/userupload/13522080/file/original-df95f5e113823c9d2b5db50b4d969079.jpg?format=webp&resize=840x630&vertical=center",
-    title: "Modern Brand Identity",
-    description: "Full motion graphics showcase for tech startup",
-    views: "1.2k"
+    title: "PurLines - Full website UIUX Design & Development",
+    description: "Designed and developed a visually stunning and user-friendly website for PurLines, Graphic Design Agency, incorporating intuitive navigation, engaging visuals, and seamless functionality to enhance the online presence and user experience.",
+    views: "7.1k"
   },
   {
     id: 3,
     src: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/46b56c185750291.6568dcde3408d.jpg",
-    title: "Digital Marketing Ads Creative",
-    description: "Ads Creative for PersonalWebStudio regarding Digital marketing",
-    views: 531
+    title: "Tripist - Travel Agency Website Design",
+    description: "Designed a modern and responsive website for Tripist, a travel agency, featuring intuitive navigation, engaging visuals, and seamless user experience.",
+    views: "1.5k"
   },
   {
     id: 4,
     src: "https://assets-global.website-files.com/5e593fb060cf877cf875dd1f/642b05756ac7d1316bf37d46_cardealership128image2.jpeg",
-    title: "Modern Brand Identity",
-    description: "Full motion graphics showcase for tech startup",
-    views: "1.2k"
+    title: "JP Delaership - Car Dealership Website",
+    description: "Designed a modern and responsive website for JP Delaership, a car dealership, featuring all the cars for sale in a visually appealing and user-friendly manner.",
+    views: "695k"
   },
   {
     id: 5,
     src: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/535f0c133905271.61c98a89dfef2.jpg",
-    title: "Digital Marketing Ads Creative",
-    description: "Ads Creative for PersonalWebStudio regarding Digital marketing",
-    views: 531
+    title: "Foodspa - Food Delivery App UIUX Design",
+    description: "Designed a modern and intuitive UI/UX for Foodspa, a food delivery app, with all the food & Menu details with custom user roles and Logins.",
+    views: 801
   },
   {
     id: 6,
     src: "https://tse1.mm.bing.net/th/id/OIP.fLejbhR8gB5a_nF1wSaIOgHaHa?pid=ImgDet&w=193&h=193&c=7&dpr=1.3&o=7&rm=3",
-    title: "Modern Brand Identity",
-    description: "Full motion graphics showcase for tech startup",
-    views: "1.2k"
+    title: "Elephantasy - Logo Design & Branding",
+    description: "Created a unique and memorable logo design and branding for Elephantasy, a jungle saving ngo, through visual elements that reflect the nature and values of the organization.",
+    views: "8.6k"
   },
   {
     id: 7,
     src: "https://lh7-rt.googleusercontent.com/docsz/AD_4nXdOMQGD3yq9j32J5AjHauaYvSYmYHcsp997V_7cVZ-RQ0tGgJI6R1Pr_tzu4_cMqQqRgNqOiNPNqn5WYzImP-AykOJHVyq7mqqr5EimlzT6WWrTDcCV0Q7icaCQtCNtKlgkYY2NCg?key=hG0OmMqgsPyeEqoUXkS6Dw",
-    title: "Digital Marketing Ads Creative",
-    description: "Ads Creative for PersonalWebStudio regarding Digital marketing",
+    title: "ActiveUS - Corporate Branding & Custom products logo placements",
+    description: "Designed a comprehensive corporate branding and identity package for ActiveUS, including custom product logo placements.",
     views: 531
   },
   {
     id: 8,
     src: "https://res.cloudinary.com/upwork-cloud/image/upload/c_scale,w_1000/v1701101499/catalog/1729168426048888832/d7rm2xochajdjzey1kz0.jpg",
-    title: "Modern Brand Identity",
-    description: "Full motion graphics showcase for tech startup",
-    views: "1.2k"
+    title: "ColegueTalk - SaaS Product UIUX Design",
+    description: "Designed a modern and intuitive UI/UX for ColegueTalk, a SaaS product, with all the features and functionality needed for seamless user experience.",
+    views: "5.2k"
   },
   // Add more items here...
 ];
