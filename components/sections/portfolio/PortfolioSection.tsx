@@ -61,6 +61,27 @@ const ALL_DATA = [
     description: "Designed a modern and intuitive UI/UX for ColegueTalk, a SaaS product, with all the features and functionality needed for seamless user experience.",
     views: "5.2k"
   },
+  {
+    id: 9,
+    src: "https://i.pinimg.com/736x/13/a6/73/13a673629355723cefe0e964eaacde26.jpg",
+    title: "Horizon Courts - Modern Tennis Court landing page",
+    description: "Designed a modern and intuitive UI/UX for Horizon Courts, a tennis court landing page, with all the features and functionality needed",
+    views: "4.1k"
+  },
+  {
+    id: 10,
+    src: "https://i.pinimg.com/736x/90/75/ee/9075ee982441eef7f2efa1b45fc75f8b.jpg",
+    title: "Patastic - Food Ads Creative Post & Brading",
+    description: "Designed a modern and intuitive UI/UX for Patastic, a food ads creative post & branding project",
+    views: "9.2k"
+  },
+  {
+    id: 11,
+    src: "https://i.pinimg.com/736x/45/0c/ef/450cef9e15dcfe0483dcdf1d0b438407.jpg",
+    title: "Cryptoflow - Cryptocurrency Exchange Platform UIUX Design",
+    description: "Designed a modern and intuitive UI/UX for Cryptoflow, a cryptocurrency exchange platform",
+    views: "2.8k"
+  },
   // Add more items here...
 ];
 const ITEMS_PER_PAGE = 6;
