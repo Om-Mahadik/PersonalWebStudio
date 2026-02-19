@@ -7,8 +7,8 @@ const images = [
   "/portfolio/port1.jpg",
   "/portfolio/port2.jpg",
   "/portfolio/port3.jpg",
-  "/portfolio/port2.jpg",
-  "/portfolio/port1.jpg",
+  "https://i.pinimg.com/1200x/3a/2e/13/3a2e136d51cd303ddb57a5474dabd2de.jpg",
+  "https://i.pinimg.com/1200x/48/8f/5a/488f5afafe01617b218a3f4371d54bc0.jpg",
   
 ];
 
