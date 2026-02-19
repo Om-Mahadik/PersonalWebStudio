@@ -5,45 +5,45 @@ import { useState } from "react";
 
 const faqs = [
   {
-    question: "How long does it takes to get started?",
-    answer: "Our turnaround is lightning-fast. Just one week from signing off and we&apos;re there with the kick-off meeting to get it rolling."
+    question: "What services does PersonalWebStudio offer?",
+    answer: "We provide complete digital solutions including Website Design & Development, UI/UX Design, Branding & Identity Design, Digital Marketing, and Social Media Management. We help businesses build a strong and professional online presence."
   },
   {
-    question: "How long does it takes to get started?",
-    answer: "Our turnaround is lightning-fast. Just one week from signing off and we&apos;re there with the kick-off meeting to get it rolling."
+    question: "Do you build custom websites?",
+    answer: "Yes! Every website we create is fully custom-designed based on your business goals, audience, and brand identity. We do not rely on generic templates unless specifically requested."
   },
   {
-    question: "How long does it takes to get started?",
-    answer: "Our turnaround is lightning-fast. Just one week from signing off and we&apos;re there with the kick-off meeting to get it rolling."
+    question: "Which technologies do you use for website development?",
+    answer: "We work with modern technologies like HTML, CSS, JavaScript, React.js, Django, MySQL, and MongoDB. The tech stack is selected based on your project requirements."
   },
   {
-    question: "How long does it takes to get started?",
-    answer: "Our turnaround is lightning-fast. Just one week from signing off and we&apos;re there with the kick-off meeting to get it rolling."
+    question: "How long does it take to build a website?",
+    answer: "Project timelines depend on complexity. A basic website takes 7–10 days, a business website takes 2–3 weeks, and advanced or e-commerce platforms may take 3–5 weeks."
   },
   {
-    question: "How long does it takes to get started?",
-    answer: "Our turnaround is lightning-fast. Just one week from signing off and we&apos;re there with the kick-off meeting to get it rolling."
+    question: "Do you redesign existing websites?",
+    answer: "Yes, we can redesign your existing website to improve its design, performance, responsiveness, and user experience."
   },
   {
-    question: "How long does it takes to get started?",
-    answer: "Our turnaround is lightning-fast. Just one week from signing off and we&apos;re there with the kick-off meeting to get it rolling."
+    question: "What is included in UI/UX design services?",
+    answer: "Our UI/UX services include user research, wireframing, prototyping, mobile and web interface design, and user experience optimization to ensure intuitive and user-friendly designs."
   },
   {
-    question: "How long does it takes to get started?",
-    answer: "Our turnaround is lightning-fast. Just one week from signing off and we&apos;re there with the kick-off meeting to get it rolling."
+    question: "Do you provide branding services?",
+    answer: "Yes. We help businesses create a strong brand identity including logo design, color palettes, typography, brand guidelines, and social media branding assets."
   },
   {
-    question: "How long does it takes to get started?",
-    answer: "Our turnaround is lightning-fast. Just one week from signing off and we&apos;re there with the kick-off meeting to get it rolling."
+    question: "What digital marketing services do you offer?",
+    answer: "We offer SEO, social media marketing, content marketing, paid advertising (Google & Meta ads), and performance marketing strategies to grow traffic and conversions."
   },
   {
-    question: "How long does it takes to get started?",
-    answer: "Our turnaround is lightning-fast. Just one week from signing off and we&apos;re there with the kick-off meeting to get it rolling."
+    question: "Will my website be mobile-friendly?",
+    answer: "Absolutely. All our websites are fully responsive and optimized for mobile, tablet, and desktop devices."
   },
   {
-    question: "How long does it takes to get started?",
-    answer: "Our turnaround is lightning-fast. Just one week from signing off and we&apos;re there with the kick-off meeting to get it rolling."
-  },
+    question: "Do you provide maintenance and support after launch?",
+    answer: "Yes, we offer ongoing maintenance and support packages to keep your website secure, updated, and running smoothly."
+  }
 ];
 
 // Animation Variants for the staggered entrance
@@ -65,7 +65,6 @@ const itemVariants = {
     y: 0, 
     transition: { 
       duration: 0.8, 
-      // "as const" fixes the TypeScript Type error found in build logs
       ease: [0.21, 0.45, 0.32, 0.9] as const 
     } 
   },
@@ -108,7 +107,6 @@ export default function FaqsSectionHome() {
                     {faq.question}
                   </span>
 
-                  {/* Plus to X Icon */}
                   <div className="relative flex h-5 w-5 items-center justify-center">
                     <motion.div 
                       className="absolute h-[1.5px] w-4 bg-white" 
