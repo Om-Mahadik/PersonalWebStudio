@@ -118,10 +118,17 @@ export default function SalesRegistrationPage() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-1">
-                  <label className="text-[11px] font-bold uppercase text-zinc-800 tracking-wider ml-1">LinkedIn / Portfolio URL</label>
-                  <input name="linkedin" type="url" placeholder="linkedin.com/in/username" className="w-full bg-zinc-50 border border-zinc-300 rounded-xl px-4 py-3 focus:bg-white focus:border-black outline-none transition-all placeholder:text-zinc-400 text-black font-medium" />
-                </div>
+<div className="space-y-1">
+  <label className="text-[11px] font-bold uppercase text-zinc-800 tracking-wider ml-1">
+    LinkedIn / Portfolio URL <span className="text-zinc-400 font-normal lowercase">(Optional)</span>
+  </label>
+  <input 
+    name="linkedin" 
+    type="url" 
+    placeholder="linkedin.com/in/username" 
+    className="w-full bg-zinc-50 border border-zinc-300 rounded-xl px-4 py-3 focus:bg-white focus:border-black outline-none transition-all placeholder:text-zinc-400 text-black font-medium" 
+  />
+</div>
                 <div className="space-y-1">
                   <label className="text-[11px] font-bold uppercase text-zinc-800 tracking-wider ml-1">
                     Contact Number <span className="text-red-500">*</span>
